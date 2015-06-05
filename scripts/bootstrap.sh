@@ -29,3 +29,7 @@ if [ ! -e "$TOMCAT" ]; then
 fi
 tar xvzf "$TOMCAT" --directory /apps
 chown -R vagrant:vagrant /apps/apache-tomcat-${TOMCAT_VERSION}
+
+# Puppet Modules
+puppet module install puppetlabs-firewall
+puppet module install puppetlabs-postgresql
