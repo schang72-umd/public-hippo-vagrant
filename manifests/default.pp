@@ -14,3 +14,21 @@ postgresql::server::db { 'hippo':
   password => postgresql_password('hippo', 'hippo'),
   encoding => 'UNICODE',
 }
+
+firewall { '100 allow http access to Tomcat':
+  port => [9600, 9603, 9604, 9605],
+  proto => tcp,
+  action => accept,
+}
+
+# directories needed by Tomcat
+file { '/apps/cms/tomcat/logs':
+  ensure => directory,
+  owner  => 'vagrant',
+  group  => 'vagrant',
+}
+file { '/apps/cms/tomcat/temp':
+  ensure => directory,
+  owner  => 'vagrant',
+  group  => 'vagrant',
+}

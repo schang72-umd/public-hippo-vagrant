@@ -33,3 +33,16 @@ chown -R vagrant:vagrant /apps/apache-tomcat-${TOMCAT_VERSION}
 # Puppet Modules
 puppet module install puppetlabs-firewall
 puppet module install puppetlabs-postgresql
+
+# runtime server environment
+mkdir -p /apps/cms
+
+HIPPO_VERSION=7.8.8-3.2
+HIPPO_DIST=/vagrant/dist/public-${HIPPO_VERSION}-server-distribution.tar.gz
+tar xvzf "$HIPPO_DIST" --directory /apps/cms
+
+cp -rpv /vagrant/env/tomcat /apps/cms
+
+mkdir -p /apps/cms/storage/workspaces
+
+chown -R vagrant:vagrant /apps/cms
