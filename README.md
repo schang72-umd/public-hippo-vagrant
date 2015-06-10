@@ -67,5 +67,5 @@ $ vagrant ssh -- tail -f /apps/cms/tomcat/logs/catalina.out
 Once Tomcat starts up, you should have a functioning web application on the
 following URLs:
 
-* Site: <http://192.168.55.10:9600>
-* CMS: <http://192.168.55.10:9600>
+* Site: <http://192.168.55.10:9600/site>
+* CMS: <http://192.168.55.10:9600/cms>
