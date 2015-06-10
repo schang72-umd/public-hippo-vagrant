@@ -66,4 +66,5 @@ Vagrant.configure(2) do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", path: "scripts/bootstrap.sh"
   config.vm.provision "puppet"
+  config.vm.provision "shell", path: "scripts/hippo.sh", privileged: false
 end

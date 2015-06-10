@@ -25,7 +25,7 @@ TOMCAT=/vagrant/dist/apache-tomcat-${TOMCAT_VERSION}.tar.gz
 # look for a cached tarball
 if [ ! -e "$TOMCAT" ]; then
     TOMCAT_PKG_URL=http://archive.apache.org/dist/tomcat/tomcat-7/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz
-    wget -O "$TOMCAT" "$TOMCAT_PKG_URL"
+    curl -Lso "$TOMCAT" "$TOMCAT_PKG_URL"
 fi
 tar xvzf "$TOMCAT" --directory /apps
 chown -R vagrant:vagrant /apps/apache-tomcat-${TOMCAT_VERSION}
@@ -35,14 +35,6 @@ puppet module install puppetlabs-firewall
 puppet module install puppetlabs-postgresql
 
 # runtime server environment
-mkdir -p /apps/cms
-
-HIPPO_VERSION=7.8.8-3.2
-HIPPO_DIST=/vagrant/dist/public-${HIPPO_VERSION}-server-distribution.tar.gz
-tar xvzf "$HIPPO_DIST" --directory /apps/cms
-
-cp -rpv /vagrant/env/tomcat /apps/cms
-
 mkdir -p /apps/cms/storage/workspaces
-
+cp -rpv /vagrant/env/tomcat /apps/cms
 chown -R vagrant:vagrant /apps/cms
