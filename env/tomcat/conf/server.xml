@@ -206,7 +206,7 @@
 -->
         <Context
              path="/cms"
-             docBase="public-cms-7.8.8-3.2"
+             docBase="public-cms-${hippo.version}"
              reloadable="false"
              crossContext="false"
         >
@@ -224,7 +224,7 @@
 
         <Context 
              path="/site"
-             docBase="public-site-7.8.8-3.2" 
+             docBase="public-site-${hippo.version}" 
              reloadable="false" 
              crossContext="false"
         >

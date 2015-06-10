@@ -16,3 +16,6 @@ if [ ! -e "$PGSQL_JDBC" ]; then
     curl -Lso "$PGSQL_JDBC" "$PGSQL_JDBC_URL"
 fi
 cp "$PGSQL_JDBC" /apps/cms/tomcat/common/lib
+
+sed -i "s/hippo.version=.*/hippo.version=$HIPPO_VERSION/" \
+    /apps/cms/tomcat/conf/catalina.properties
