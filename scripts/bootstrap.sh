@@ -35,6 +35,5 @@ puppet module install puppetlabs-firewall
 puppet module install puppetlabs-postgresql
 
 # runtime server environment
-mkdir -p /apps/cms/storage/workspaces
-cp -rpv /vagrant/env/tomcat /apps/cms
+mkdir -p /apps/cms
 chown -R vagrant:vagrant /apps/cms
