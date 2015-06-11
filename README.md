@@ -69,3 +69,4 @@ following URLs:
 
 * Site: <http://192.168.55.10:9600/site>
 * CMS: <http://192.168.55.10:9600/cms>
+* CMS Console: <http://192.168.55.10:9600/cms/console>
