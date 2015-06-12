@@ -37,8 +37,7 @@ $ git clone git@github.com:umd-lib/public-hippo-vagrant.git
 $ git clone git@github.com:umd-lib/public-hippo.git
 $ cd public-hippo
 $ mvn clean install
-$ mvn -P server-dist
-$ mvn -P dist
+$ mvn -P separate-dist
 $ cp target/*.tar.gz ../public-hippo-vagrant/dist
 ```
 
@@ -46,14 +45,16 @@ $ cp target/*.tar.gz ../public-hippo-vagrant/dist
 
 See the [Prerequisites section](#prerequisites) for instructions.
 
-### Bring up the Vagrant and start Tomcat
+### Bring up the Vagrant and start Tomcats
 
 ```
 $ cd ../public-hippo-vagrant
 $ vagrant up
 $ vagrant ssh
 
-vagrant@localhost$ cd /apps/cms/tomcat
+vagrant@localhost$ cd /apps/cms/tomcat-cms
+vagrant@localhost$ ./control start
+vagrant@localhost$ cd /apps/cms/tomcat-site
 vagrant@localhost$ ./control start
 ```
 
@@ -61,12 +62,15 @@ You can watch the Tomcat log in a separate window by doing:
 
 ```
 $ cd /apps/git/public-hippo-vagrant
-$ vagrant ssh -- tail -f /apps/cms/tomcat/logs/catalina.out
+# for the cms:
+$ vagrant ssh -- tail -f /apps/cms/tomcat-cms/logs/catalina.out
+# or for the site:
+$ vagrant ssh -- tail -f /apps/cms/tomcat-site/logs/catalina.out
 ```
 
-Once Tomcat starts up, you should have a functioning web application on the
+Once both Tomcats start up, you should have a functioning web application on the
 following URLs:
 
-* Site: <http://192.168.55.10:9600/site>
+* Site: <http://192.168.55.10:9700/site>
 * CMS: <http://192.168.55.10:9600/cms>
 * CMS Console: <http://192.168.55.10:9600/cms/console>
