@@ -185,4 +185,14 @@
     <param name="copyWhenReading" value="true"/>
   </DataStore>
 
+  <Cluster>
+    <Journal class="org.apache.jackrabbit.core.journal.JNDIDatabaseJournal">
+      <param name="revision" value="${rep.home}/revision.log"/>
+      <param name="url" value="java:comp/env/jdbc/repositoryDS"/>
+      <param name="driver" value="javax.naming.InitialContext"/>
+      <param name="schemaObjectPrefix" value="repository_"/>
+      <param name="schema" value="postgresql"/>
+    </Journal>
+  </Cluster>
+
 </Repository>
