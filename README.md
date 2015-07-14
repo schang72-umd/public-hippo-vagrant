@@ -84,7 +84,25 @@ following URLs:
     * **[tomcat/](env/tomcat):** Configuration that is common between the CMS
       and Site Tomcats
     * **[tomcat-cms/](env/tomcat-cms):** CMS Tomcat-specific configuration
-    * **[tomcat-site/](env/tomcat-site):** CMS Tomcat-specific configuration
+    * **[tomcat-site/](env/tomcat-site):** Site Tomcat-specific configuration
 * **[manifests/](manifests):** Puppet manifests for provisioning
 * **[scripts/](scripts):** Shell scripts for provisioning
 * **[Vagrantfile](Vagrantfile):** The Vagrantfile that controls it all
+
+## Runtime Environment Structure
+
+Within the **/apps/cms** directory on the VM, there is a parallel structure of 3
+directories each for the CMS and the Site. These are:
+
+* **tomcat-{cms,site}:** `CATALINA_BASE` directory containing the Tomcat runtime
+  configuration files (including the repository.xml), the logs, and control
+  script.
+* **storage-{cms,site}:** Hippo local repository storage. Note that each
+  instance needs its own storage directory, though they both use the same
+  PostgreSQL database for persistance storage. This location is set using the
+  `repo_path` environment variable in the
+  **tomcat-{cms,site}/conf/env-config.properties** file.
+* **webapps-{cms,site}:** Hippo webapps deployed from the distribution tarball.
+
+In addition, there is one copy of the public utilities (e.g. the DBFinder loader
+script). It is located at **/apps/cms/utilities**.
