@@ -47,11 +47,21 @@ See the [Prerequisites section](#prerequisites) for instructions.
 
 ### Bring up the Vagrant and start Tomcats
 
+The [hippo.sh](scripts/hippo.sh) provisioning script currently looks for
+distribution tarballs for Hippo version 7.8.9. You can change that by setting the
+`HIPPO_VERSION` environment variable before running `vagrant up`.
+
 ```
 $ cd ../public-hippo-vagrant
 $ vagrant up
+# or use a different version of Hippo
+$ HIPPO_VERSION=7.8.9-1 vagrant up
 $ vagrant ssh
+```
 
+In the VM:
+
+```
 vagrant@localhost$ cd /apps/cms/tomcat-cms
 vagrant@localhost$ ./control start
 vagrant@localhost$ cd /apps/cms/tomcat-site
@@ -84,7 +94,7 @@ following URLs:
     * **[tomcat/](env/tomcat):** Configuration that is common between the CMS
       and Site Tomcats
     * **[tomcat-cms/](env/tomcat-cms):** CMS Tomcat-specific configuration
-    * **[tomcat-site/](env/tomcat-site):** Site Tomcat-specific configuration
+    * **[tomcat-site/](env/tomcat-site):** CMS Tomcat-specific configuration
 * **[manifests/](manifests):** Puppet manifests for provisioning
 * **[scripts/](scripts):** Shell scripts for provisioning
 * **[Vagrantfile](Vagrantfile):** The Vagrantfile that controls it all

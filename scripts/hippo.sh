@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Deploys the HippoCMS distribution tarballs.
+# Usage: hippo.sh [version]
+
 # need the Postgres JDBC
 PGSQL_JDBC_VERSION=8.4-702.jdbc4
 PGSQL_JDBC=/vagrant/dist/postgresql-${PGSQL_JDBC_VERSION}.jar
@@ -9,7 +12,7 @@ if [ ! -e "$PGSQL_JDBC" ]; then
 fi
 
 # deploy Hippo from dist tarballs
-HIPPO_VERSION=7.8.8-4-SNAPSHOT
+HIPPO_VERSION=${1:-7.8.9}
 
 for APP in cms site; do
     HIPPO_DIST=/vagrant/dist/public-${HIPPO_VERSION}-${APP}-distribution.tar.gz
@@ -20,4 +23,3 @@ for APP in cms site; do
         /apps/cms/tomcat-${APP}/conf/catalina.properties
     cp "$PGSQL_JDBC" /apps/cms/tomcat-${APP}/common/lib
 done
-
