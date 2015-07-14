@@ -74,3 +74,17 @@ following URLs:
 * Site: <http://192.168.55.10:9700/site>
 * CMS: <http://192.168.55.10:9600/cms>
 * CMS Console: <http://192.168.55.10:9600/cms/console>
+
+## Structure
+
+* **[dist/](dist):** Holding area for tarballs used by the provisioner (JDK,
+  Tomcat, etc.); these are not stored under version control
+* **[env/](env):** Config files copied by the shell provisioner
+  [scripts](scripts)
+    * **[tomcat/](env/tomcat):** Configuration that is common between the CMS
+      and Site Tomcats
+    * **[tomcat-cms/](env/tomcat-cms):** CMS Tomcat-specific configuration
+    * **[tomcat-site/](env/tomcat-site):** CMS Tomcat-specific configuration
+* **[manifests/](manifests):** Puppet manifests for provisioning
+* **[scripts/](scripts):** Shell scripts for provisioning
+* **[Vagrantfile](Vagrantfile):** The Vagrantfile that controls it all
