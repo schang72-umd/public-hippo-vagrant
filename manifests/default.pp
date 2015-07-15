@@ -15,20 +15,13 @@ postgresql::server::db { 'hippo':
   encoding => 'UNICODE',
 }
 
-firewall { '100 allow http access to Tomcat':
+firewall { '100 allow http access to tomcat-cms':
   port => [9600, 9603, 9604, 9605],
   proto => tcp,
   action => accept,
 }
-
-# directories needed by Tomcat
-file { '/apps/cms/tomcat/logs':
-  ensure => directory,
-  owner  => 'vagrant',
-  group  => 'vagrant',
-}
-file { '/apps/cms/tomcat/temp':
-  ensure => directory,
-  owner  => 'vagrant',
-  group  => 'vagrant',
+firewall { '110 allow http access to tomcat-site':
+  port => [9700, 9703, 9704, 9705],
+  proto => tcp,
+  action => accept,
 }
