@@ -37,7 +37,7 @@ $ git clone git@github.com:umd-lib/public-hippo-vagrant.git
 $ git clone git@github.com:umd-lib/public-hippo.git
 $ cd public-hippo
 $ mvn clean install
-$ mvn -P separate-dist
+$ mvn -P separate-dist -pl '!repository-war'
 $ cp target/*.tar.gz ../public-hippo-vagrant/dist
 ```
 
