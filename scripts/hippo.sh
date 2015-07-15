@@ -16,7 +16,9 @@ HIPPO_VERSION=${1:-7.8.9}
 
 for APP in cms site; do
     HIPPO_DIST=/vagrant/dist/public-${HIPPO_VERSION}-${APP}-distribution.tar.gz
-    tar xvzf "$HIPPO_DIST" --directory /apps/cms webapps-${APP} utilities
+    # webapps and utilities
+    tar xvzf "$HIPPO_DIST" --directory /apps/cms webapps utilities
+    # per-Tomcat runtime common and shared libs
     tar xvzf "$HIPPO_DIST" --directory /apps/cms/tomcat-${APP} common shared
 
     sed -i "s/hippo.version=.*/hippo.version=$HIPPO_VERSION/" \
