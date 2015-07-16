@@ -20,8 +20,9 @@ export JRE_HOME=/apps/java/jre
 export CATALINA_HOME=/apps/apache-tomcat-7.0.57
 export CATALINA_BASE=$(pwd)
 
-export CATALINA_OPTS="-Djava.awt.headless=true -Drepo.path=${repo_path} -Drepo.config=file:${CATALINA_BASE}/conf/repository.xml -Dlog4j.configuration=file:${CATALINA_BASE}/conf/log4j.xml"
-export CATALINA_OPTS="$CATALINA_OPTS -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/tmp/cms"
+export HIPPO_OPTS="-Drepo.path=${repo_path} -Drepo.config=file:${CATALINA_BASE}/conf/repository.xml"
+export LOG4J_OPTS="-Dlog4j.configuration=file:${CATALINA_BASE}/conf/log4j.xml"
+export CATALINA_OPTS="${HIPPO_OPTS} ${LOG4J_OPTS} -Djava.awt.headless=true -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/tmp/cms"
 
 export JAVA_OPTS="-Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Xms384m -Xmx1024m -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:PermSize=256m -XX:MaxPermSize=256m"
 
