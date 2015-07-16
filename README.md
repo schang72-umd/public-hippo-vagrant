@@ -101,7 +101,7 @@ following URLs:
 
 ## Runtime Environment Structure
 
-Within the **/apps/cms** directory on the VM, there is a parallel structure of 3
+Within the **/apps/cms** directory on the VM, there is a parallel structure of 2
 directories each for the CMS and the Site. These are:
 
 * **tomcat-{cms,site}:** `CATALINA_BASE` directory containing the Tomcat runtime
@@ -112,7 +112,9 @@ directories each for the CMS and the Site. These are:
   PostgreSQL database for persistance storage. This location is set using the
   `repo_path` environment variable in the
   **tomcat-{cms,site}/conf/env-config.properties** file.
-* **webapps-{cms,site}:** Hippo webapps deployed from the distribution tarball.
 
-In addition, there is one copy of the public utilities (e.g. the DBFinder loader
-script). It is located at **/apps/cms/utilities**.
+There are two additional directories:
+
+* **utilities:** Public utilities (e.g. the DBFinder loader script).
+* **webapps:** WAR files. Note that the **public-hippo-$VERSION-site.war** file
+  is shared between the two Tomcat instances.
