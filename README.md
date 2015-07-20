@@ -62,10 +62,10 @@ $ vagrant ssh
 In the VM:
 
 ```
-vagrant@localhost$ cd /apps/cms/tomcat-cms
-vagrant@localhost$ ./control start
-vagrant@localhost$ cd /apps/cms/tomcat-site
-vagrant@localhost$ ./control start
+vagrant@wwwlocal$ cd /apps/cms/tomcat-cms
+vagrant@wwwlocal$ ./control start
+vagrant@wwwlocal$ cd /apps/cms/tomcat-site
+vagrant@wwwlocal$ ./control start
 ```
 
 You can watch the Tomcat log in a separate window by doing:
