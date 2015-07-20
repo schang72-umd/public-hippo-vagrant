@@ -56,18 +56,8 @@
   <Service name="Catalina">
   
     <!--The connectors can use a shared executor, you can define one or more named thread pools-->
-    <Executor name="wwwThreadPool" namePrefix="catalina-exec-www-" 
-        maxThreads="25" minSpareThreads="5"/>
-
     <Executor name="cmsThreadPool" namePrefix="catalina-exec-cms" 
         maxThreads="10" minSpareThreads="5"/>
-
-    <Executor name="digitalThreadPool" namePrefix="catalina-exec-digital-" 
-        maxThreads="15" minSpareThreads="5"/>
-
-    <Executor name="mThreadPool" namePrefix="catalina-exec-m-" 
-        maxThreads="15" minSpareThreads="5"/>
-    
     
     <!-- A "Connector" represents an endpoint by which requests are received
          and responses are returned. Documentation at :
@@ -102,33 +92,6 @@
     -->
 
     <!-- HTTP rewrite proxy from HTTP server -->
-    <Connector port="9600"
-               executor="wwwThreadPool"
-               enableLookups="false"
-               acceptCount="1000" connectionTimeout="20000"
-               disableUploadTimeout="true"
-               URIEncoding="UTF-8" useBodyEncodingForURI="true"
-               compression="on"
-               />
-
-    <Connector port="9603"
-               executor="digitalThreadPool"
-               enableLookups="false"
-               acceptCount="1000" connectionTimeout="20000"
-               disableUploadTimeout="true"
-               URIEncoding="UTF-8" useBodyEncodingForURI="true"
-               compression="on"
-               />
-
-    <Connector port="9604"
-               executor="mThreadPool"
-               enableLookups="false"
-               acceptCount="1000" connectionTimeout="20000"
-               disableUploadTimeout="true"
-               URIEncoding="UTF-8" useBodyEncodingForURI="true"
-               compression="on"
-               />
-
     <Connector port="9605"
                executor="cmsThreadPool"
                enableLookups="false"

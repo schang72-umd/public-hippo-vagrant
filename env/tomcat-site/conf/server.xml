@@ -59,9 +59,6 @@
     <Executor name="wwwThreadPool" namePrefix="catalina-exec-www-" 
         maxThreads="25" minSpareThreads="5"/>
 
-    <Executor name="cmsThreadPool" namePrefix="catalina-exec-cms" 
-        maxThreads="10" minSpareThreads="5"/>
-
     <Executor name="digitalThreadPool" namePrefix="catalina-exec-digital-" 
         maxThreads="15" minSpareThreads="5"/>
 
@@ -102,7 +99,7 @@
     -->
 
     <!-- HTTP rewrite proxy from HTTP server -->
-    <Connector port="9700"
+    <Connector port="9600"
                executor="wwwThreadPool"
                enableLookups="false"
                acceptCount="1000" connectionTimeout="20000"
@@ -111,7 +108,7 @@
                compression="on"
                />
 
-    <Connector port="9703"
+    <Connector port="9603"
                executor="digitalThreadPool"
                enableLookups="false"
                acceptCount="1000" connectionTimeout="20000"
@@ -120,7 +117,7 @@
                compression="on"
                />
 
-    <Connector port="9704"
+    <Connector port="9604"
                executor="mThreadPool"
                enableLookups="false"
                acceptCount="1000" connectionTimeout="20000"
@@ -128,16 +125,6 @@
                URIEncoding="UTF-8" useBodyEncodingForURI="true"
                compression="on"
                />
-
-    <Connector port="9705"
-               executor="cmsThreadPool"
-               enableLookups="false"
-               acceptCount="1000" connectionTimeout="20000"
-               disableUploadTimeout="true"
-               URIEncoding="UTF-8" useBodyEncodingForURI="true"
-               compression="on"
-               />
-
 
     <!-- An Engine represents the entry point (within Catalina) that processes
          every request.  The Engine implementation for Tomcat stand alone
