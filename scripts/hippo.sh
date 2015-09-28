@@ -25,3 +25,7 @@ for APP in cms site; do
         /apps/cms/tomcat-${APP}/conf/catalina.properties
     cp "$PGSQL_JDBC" /apps/cms/tomcat-${APP}/common/lib
 done
+
+# copy utilities property file
+UTILITIES_PROPERTIES=/vagrant/env/.public-utilities.properties
+cp "$UTILITIES_PROPERTIES" /home/vagrant

@@ -29,7 +29,17 @@ SHUTDOWN_SLEEP=10
 # How many times to check for Tomct shutdown
 SHUTDOWN_COUNT=60
 
-MAIN_THREAD_POOL_PORT=9600
+# 9600 or 9605
+poolPort=`echo "$siteurl"`
+poolPort=${poolPort#http://localhost:}
+poolPort=${poolPort%/*/}
+
+# site or cms
+appName=`echo "$siteurl"`
+appName=${appName#http://localhost:*/}
+appName=${appName%/}
+
+MAIN_THREAD_POOL_PORT=$poolPort
 
 export CATALINA_PID
 
@@ -56,11 +66,19 @@ http_status(){
 
 isSiteUp(){
   response=$(http_status)
-if [ "$response" == "200" ];
-  then
-    echo "success"
-  else
-    echo "failure"
+if [ "$appName" == 'cms' ]
+  then if [ "$response" == "200" ] || [ "$response" == "302" ];
+         then 
+	   echo "success"
+         else 
+           echo "failure"
+       fi
+   else if [ "$response" == "200" ] 
+          then
+            echo "success"
+          else
+            echo "failure"
+        fi
 fi
 }
 
