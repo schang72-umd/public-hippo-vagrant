@@ -118,3 +118,21 @@ There are two additional directories:
 * **utilities:** Public utilities (e.g. the DBFinder loader script).
 * **webapps:** WAR files. Note that the **public-hippo-$VERSION-site.war** file
   is shared between the two Tomcat instances.
+  
+## Refreshing the repository to shorten the development cycle
+
+Once the environment is up, the cms and site have been started (to get the bootstrap loaded into the repository), and any modifications you wish to make to the repository hae been made, save the repository database to a backup file.
+
+You should probably shut down the cms and site first to ensure that the repository is in the state you wish.
+
+```
+sudo -u postgres /usr/bin/pg_dump -Fc hippo --verbose > /vagrant/dist/dump-hippo.custom.0
+```
+You can restore the database repository with
+
+```
+sudo -u postgres /usr/bin/pg_restore --clean --verbose -d hippo /vagrant/dist/dump-hippo.custom.0
+```
+Storing the dump file in **/vagrant/dist** will ensure that it will not be erased when the vagrant is shut down.
+
+If you wish to start the site after the database is restored, clean out the workspaces in **/apps/cms/storage-cms/workspaces** so that the indexes will be rebuilt.
