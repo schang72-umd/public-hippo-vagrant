@@ -48,13 +48,16 @@ See the [Prerequisites section](#prerequisites) for instructions.
 ### Bring up the Vagrant and start Tomcats
 
 The [hippo.sh](scripts/hippo.sh) provisioning script currently looks for
-distribution tarballs for Hippo version 7.8.9. You can change that by setting the
-`HIPPO_VERSION` environment variable before running `vagrant up`.
+distribution tarballs for Hippo version 7.8.9. If you deploy different version, you have to change that by setting the
+`HIPPO_VERSION` environment variable before running `vagrant up`. The UMD Hippo server distribution tarballs should be copied to public-hippo-vagrant/dist directory.
 
 ```
-$ cd ../public-hippo-vagrant
-$ vagrant up
-# or use a different version of Hippo
+If HIPPO_VERION is 7.8.9-1, public-7.8.9-1-cms-distribution.tar.gz and public-7.8.9-1-site-distribution.tar.gz shall be in public-hippo-vagrant/dist.
+```
+
+
+```
+To start vagrant:
 $ HIPPO_VERSION=7.8.9-1 vagrant up
 $ vagrant ssh
 ```
