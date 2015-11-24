@@ -7,12 +7,21 @@ class { 'postgresql::globals':
   bindir       => '/usr/bin',
   service_name => 'postgresql',
 }->
-class { 'postgresql::server': }
+class { 'postgresql::server': 
+  postgres_password => 'postgres',
+}->
 
 postgresql::server::db { 'hippo':
   user => 'hippo',
+  owner => 'hippo',
   password => postgresql_password('hippo', 'hippo'),
   encoding => 'UNICODE',
+}
+
+postgresql::server::database_grant { 'hippo':
+  privilege => 'ALL',
+  db        => 'hippo',
+  role      => 'hippo',
 }
 
 firewall { '100 allow http access to tomcat-cms':
