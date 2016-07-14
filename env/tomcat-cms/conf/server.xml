@@ -87,9 +87,9 @@
     -->
 
     <!-- Define an AJP 1.3 Connector on port 8009 -->
-    <!--
-    <Connector port="11009" protocol="AJP/1.3" redirectPort="8443" URIEncoding="UTF-8" />
-    -->
+    
+    <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" URIEncoding="UTF-8" />
+    
 
     <!-- HTTP rewrite proxy from HTTP server -->
     <Connector port="9605"
