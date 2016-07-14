@@ -14,10 +14,12 @@ fi
 # deploy Hippo from dist tarballs
 HIPPO_VERSION=${1:-7.8.9}
 
-for APP in cms site; do
+for APP in cms site site2; do
     HIPPO_DIST=/vagrant/dist/public-${HIPPO_VERSION}-${APP}-distribution.tar.gz
     # webapps and utilities
-    tar xvzf "$HIPPO_DIST" --directory /apps/cms webapps utilities
+    if [ "$APP" != "site2" ]; then
+      tar xvzf "$HIPPO_DIST" --directory /apps/cms webapps utilities
+    fi
     # per-Tomcat runtime common and shared libs
     tar xvzf "$HIPPO_DIST" --directory /apps/cms/tomcat-${APP} common shared
 
