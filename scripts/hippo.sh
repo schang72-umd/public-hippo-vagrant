@@ -21,8 +21,13 @@ for APP in cms site site2; do
       tar xvzf "$HIPPO_DIST" --directory /apps/cms webapps utilities
     fi
     # per-Tomcat runtime common and shared libs
-    tar xvzf "$HIPPO_DIST" --directory /apps/cms/tomcat-${APP} common shared
-
+    if [ "$APP" != "site2" ]; then
+      tar xvzf "$HIPPO_DIST" --directory /apps/cms/tomcat-${APP} common shared
+    else
+      cd /apps/cms/tomcat-site
+      cp -r common /apps/cms/tomcat-site2/
+      cp -r shared /apps/cms/tomcat-site2/
+    fi
     sed -i "s/hippo.version=.*/hippo.version=$HIPPO_VERSION/" \
         /apps/cms/tomcat-${APP}/conf/catalina.properties
     cp "$PGSQL_JDBC" /apps/cms/tomcat-${APP}/common/lib
