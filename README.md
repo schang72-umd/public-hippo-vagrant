@@ -65,9 +65,13 @@ $ vagrant ssh
 In the VM:
 
 ```
+vagrant@wwwlocal$ cd /apps/cms/apache
+vagrant@wwwlocal$ ./control start
 vagrant@wwwlocal$ cd /apps/cms/tomcat-cms
 vagrant@wwwlocal$ ./control start
 vagrant@wwwlocal$ cd /apps/cms/tomcat-site
+vagrant@wwwlocal$ ./control start
+vagrant@wwwlocal$ cd /apps/cms/tomcat-site2
 vagrant@wwwlocal$ ./control start
 ```
 
@@ -79,14 +83,16 @@ $ cd /apps/git/public-hippo-vagrant
 $ vagrant ssh -- tail -f /apps/cms/tomcat-cms/logs/catalina.out
 # or for the site:
 $ vagrant ssh -- tail -f /apps/cms/tomcat-site/logs/catalina.out
+# or for the site2:
+$ vagrant ssh -- tail -f /apps/cms/tomcat-site2/logs/catalina.out
 ```
 
 Once both Tomcats start up, you should have a functioning web application on the
 following URLs:
 
-* Site: <http://192.168.55.10:9600/site>
-* CMS: <http://192.168.55.10:9605/cms>
-* CMS Console: <http://192.168.55.10:9605/cms/console>
+* Site: <http://192.168.55.10/site/>
+* CMS: <http://192.168.55.10/cms/>
+* CMS Console: <http://192.168.55.10/cms/console/>
 
 ## Structure
 
