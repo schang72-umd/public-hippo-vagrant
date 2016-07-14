@@ -69,5 +69,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: "scripts/bootstrap.sh"
   config.vm.provision "puppet"
   config.vm.provision "shell", path: "scripts/tomcat.sh", privileged: false
+  config.vm.provision "shell", path: "scripts/apache.sh", privileged: false
   config.vm.provision "shell", path: "scripts/hippo.sh", args: ENV["HIPPO_VERSION"] || [], privileged: false
 end
