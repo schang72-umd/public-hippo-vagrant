@@ -13,3 +13,8 @@ sudo chown root:vagrant apachectl
 sudo chown root:root apachectl.exec
 sudo chmod 4750 apachectl
 
+# copy in the master control file
+cd /apps/cms/
+cp /vagrant/env/control control
+chmod 775 control
+

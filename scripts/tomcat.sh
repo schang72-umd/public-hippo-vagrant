@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir -p /apps/cms/storage-{cms,site,site2}/workspaces
+mkdir -p /apps/cms/storage-{cms,site1,site2}/workspaces
 cp -rpv /vagrant/env/tomcat /apps/cms/tomcat-cms
 cp -rpv /vagrant/env/tomcat /apps/cms/tomcat-site
 cp -rpv /vagrant/env/tomcat /apps/cms/tomcat-site2
