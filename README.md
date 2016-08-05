@@ -65,9 +65,7 @@ $ vagrant ssh
 In the VM:
 
 ```
-vagrant@wwwlocal$ cd /apps/cms/tomcat-cms
-vagrant@wwwlocal$ ./control start
-vagrant@wwwlocal$ cd /apps/cms/tomcat-site
+vagrant@wwwlocal$ cd /apps/cms/
 vagrant@wwwlocal$ ./control start
 ```
 
@@ -78,15 +76,17 @@ $ cd /apps/git/public-hippo-vagrant
 # for the cms:
 $ vagrant ssh -- tail -f /apps/cms/tomcat-cms/logs/catalina.out
 # or for the site:
-$ vagrant ssh -- tail -f /apps/cms/tomcat-site/logs/catalina.out
+$ vagrant ssh -- tail -f /apps/cms/tomcat-site1/logs/catalina.out
+# or for the site2:
+$ vagrant ssh -- tail -f /apps/cms/tomcat-site2/logs/catalina.out
 ```
 
 Once both Tomcats start up, you should have a functioning web application on the
 following URLs:
 
-* Site: <http://192.168.55.10:9600/site>
-* CMS: <http://192.168.55.10:9605/cms>
-* CMS Console: <http://192.168.55.10:9605/cms/console>
+* Site: <http://192.168.55.10/site/>
+* CMS: <http://192.168.55.10/cms/>
+* CMS Console: <http://192.168.55.10/cms/console/>
 
 ## Structure
 
@@ -97,7 +97,8 @@ following URLs:
     * **[tomcat/](env/tomcat):** Configuration that is common between the CMS
       and Site Tomcats
     * **[tomcat-cms/](env/tomcat-cms):** CMS Tomcat-specific configuration
-    * **[tomcat-site/](env/tomcat-site):** CMS Tomcat-specific configuration
+    * **[tomcat-site1/](env/tomcat-site1):** CMS Tomcat-specific configuration
+    * **[tomcat-site2/](env/tomcat-site2):** CMS Tomcat-specific configuration
 * **[manifests/](manifests):** Puppet manifests for provisioning
 * **[scripts/](scripts):** Shell scripts for provisioning
 * **[Vagrantfile](Vagrantfile):** The Vagrantfile that controls it all

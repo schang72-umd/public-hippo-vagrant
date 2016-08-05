@@ -1,3 +1,7 @@
+package { 'httpd':
+  ensure => present,
+}
+
 class { 'postgresql::globals':
   manage_package_repo => true,
   version             => '8.4',
@@ -25,12 +29,12 @@ postgresql::server::database_grant { 'hippo':
 }
 
 firewall { '100 allow http access to tomcat-cms':
-  port => [9600, 9603, 9604, 9605],
+  dport => [80, 9600, 9603, 9604, 9605],
   proto => tcp,
   action => accept,
 }
 firewall { '110 allow http access to tomcat-site':
-  port => [9700, 9703, 9704, 9705],
+  dport => [80, 9700, 9703, 9704, 9705],
   proto => tcp,
   action => accept,
 }
