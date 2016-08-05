@@ -62,10 +62,6 @@
     <Executor name="digitalThreadPool" namePrefix="catalina-exec-digital-" 
         maxThreads="15" minSpareThreads="5"/>
 
-    <Executor name="mThreadPool" namePrefix="catalina-exec-m-" 
-        maxThreads="15" minSpareThreads="5"/>
-    
-    
     <!-- A "Connector" represents an endpoint by which requests are received
          and responses are returned. Documentation at :
          Java HTTP Connector: /docs/config/http.html (blocking & non-blocking)
@@ -117,15 +113,6 @@
                compression="on"
                />
 
-    <Connector port="9614"
-               executor="mThreadPool"
-               enableLookups="false"
-               acceptCount="1000" connectionTimeout="20000"
-               disableUploadTimeout="true"
-               URIEncoding="UTF-8" useBodyEncodingForURI="true"
-               compression="on"
-               />
-
     <!-- An Engine represents the entry point (within Catalina) that processes
          every request.  The Engine implementation for Tomcat stand alone
          analyzes the HTTP headers included with the request, and passes them
@@ -135,51 +122,15 @@
     <!-- You should set jvmRoute to support load-balancing via AJP ie :
     <Engine name="Catalina" defaultHost="localhost" jvmRoute="jvm1">         
     --> 
-    <Engine name="Catalina" defaultHost="localhost" jvmRoute="worker2">
+    <Engine name="Catalina" defaultHost="localhost" jvmRoute="site2">
 
       <!--For clustering, please take a look at documentation at:
           /docs/cluster-howto.html  (simple how to)
           /docs/config/cluster.html (reference documentation) -->
       
-      <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster" channelSendOptions="8">
-            
-        <Manager className="org.apache.catalina.ha.session.DeltaManager"
-          expireSessionsOnShutdown="false"
-          notifyListenersOnReplication="true"/>
-
-        <Channel className="org.apache.catalina.tribes.group.GroupChannel">
-
-          <Membership className="org.apache.catalina.tribes.membership.McastService"
-            address="228.0.0.4"
-            port="45564" frequency="500"
-            dropTime="3000"/>
-
-          <Sender className="org.apache.catalina.tribes.transport.ReplicationTransmitter">
-
-            <Transport className="org.apache.catalina.tribes.transport.nio.PooledParallelSender"/>
-
-          </Sender>
-
-          <Receiver className="org.apache.catalina.tribes.transport.nio.NioReceiver"
-            address="auto" port="4000" autoBind="100"
-            selectorTimeout="5000" maxThreads="6"/>
-
-          <Interceptor className="org.apache.catalina.tribes.group.interceptors.TcpFailureDetector"/>
-
-          <Interceptor className="org.apache.catalina.tribes.group.interceptors.MessageDispatch15Interceptor"/>
-
-        </Channel>
-
-        <Valve className="org.apache.catalina.ha.tcp.ReplicationValve" filter=""/>
-
-        <Valve className="org.apache.catalina.ha.session.JvmRouteBinderValve"/>
-
-        <ClusterListener className="org.apache.catalina.ha.session.JvmRouteSessionIDBinderListener"/>
-
-        <ClusterListener className="org.apache.catalina.ha.session.ClusterSessionListener"/>
-
-      </Cluster>
-              
+      <!--
+      <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"/>
+      -->
 
       <!-- The request dumper valve dumps useful debugging information about
            the request and response data received and sent by Tomcat.
